@@ -15,11 +15,9 @@ export default function Home() {
       const tl = gsap.timeline({ paused: true });
 
       tl.to(".box", {
-        transform: "translateX(100%)",
         duration: 1,
-      }).to(".box-2", {
-        transform: "translateY(100%)",
-        duration: 1,
+        stagger: 0.5,
+        width: "100%",
       });
 
       const st = ScrollTrigger.create({
@@ -40,27 +38,35 @@ export default function Home() {
         <div
           key={i}
           suppressHydrationWarning
-          className="box-2 min-h-screen w-full"
+          className="min-h-screen w-full"
           style={{
             backgroundColor: randomColor(),
           }}
         ></div>
       ))}
-      <div
-        ref={containerRef}
-        className="flex flex-row gap-12 h-screen justify-center items-center"
-      >
+      <div ref={containerRef} className="h-screen flex flex-col justify-center">
         {Array.from({ length: 3 }).map((_, i) => (
           <div
             key={i}
             suppressHydrationWarning
             className="box size-24"
             style={{
+              width: "0%",
               backgroundColor: randomColor(),
             }}
           ></div>
         ))}
       </div>
+      {Array.from({ length: 1 }).map((_, i) => (
+        <div
+          key={i}
+          suppressHydrationWarning
+          className="min-h-screen w-full"
+          style={{
+            backgroundColor: randomColor(),
+          }}
+        ></div>
+      ))}
     </div>
   );
 }
